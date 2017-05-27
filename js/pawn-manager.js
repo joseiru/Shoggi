@@ -7,9 +7,9 @@ Pawn.prototype = Object.create(Piece.prototype);
 Pawn.prototype.getPossibleCells = function () {
     var possibleCells = [];
     if (this.color = "B") {
-        possibleCells = [this.positionX, this.positionY - 1];
+        possibleCells.push([this.positionX+1, this.positionY]);
     } else if (this.color = "W"){
-        possibleCells = [this.positionX, this.positionY + 1];
+        possibleCells.push([this.positionX-1, this.positionY]);
     }
     return possibleCells;
 }

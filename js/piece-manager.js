@@ -4,6 +4,8 @@ function Piece (color, positionX, positionY, alive, image) {
     this.positionX = positionX;
     this.positionY = positionY;
     this.alive = alive;
+    this.selected = false;
+    this.possible = false;
 
     if (this.color === "W") {
         //to do dar valor a la imagen
@@ -20,4 +22,8 @@ Piece.prototype.isInsideBoard = function (positionX, positionY) {
     } else {
         return false;
     }
+}
+
+Piece.prototype.selectPieceToMove = function () {
+    
 }
