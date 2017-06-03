@@ -1,9 +1,10 @@
-function Piece (color, positionX, positionY, alive, image) {
+function Piece (color, positionX, positionY, alive, image, board) {
 
     this.color = color;
     this.positionX = positionX;
     this.positionY = positionY;
     this.alive = alive;
+    this.board = board
     this.selected = false;
     this.possible = false;
 
@@ -17,13 +18,20 @@ function Piece (color, positionX, positionY, alive, image) {
 }
 
 Piece.prototype.isInsideBoard = function (positionX, positionY) {
-    if ((x > 0) && (x < 9) && (y > 0) && (y < 9)) {
+    if ((positionX >= 0) && (positionX < 9) && (positionY >= 0) && (positionY < 9)) {
         return true;
     } else {
         return false;
     }
 }
 
-Piece.prototype.selectPieceToMove = function () {
-    
+Piece.prototype.isOpponent = function (color) {
+    if (this.color !== color) {
+        return true;
+    } else {
+        return false;
+    }
 }
+
+
+
