@@ -33,5 +33,34 @@ Piece.prototype.isOpponent = function (color) {
     }
 }
 
+Piece.prototype._getPossibleCellsWithDirections = function (child,directions) {
+    var possibleCells = [];
+    var that = child;
+
+    directions.forEach(function(direction){
+        var possiblePositionX = that.positionX + direction[0];
+        var possiblePositionY = that.positionY + direction[1];
+        var cellIsInsideBoard = that.isInsideBoard(possiblePositionX,possiblePositionY);
+        if (cellIsInsideBoard) {
+            var cellToCheck = that.board[possiblePositionX][possiblePositionY];
+            var cellIsOponent = false;
+
+            if ((cellToCheck !== null) && (cellToCheck !== undefined)) {
+                cellIsOponent = that.isOpponent(cellToCheck.color);
+            }
+            if ((cellToCheck === null) || (cellToCheck === undefined) || (cellIsOponent === true)) {
+                var possibleCell = [];
+                possibleCell.push(possiblePositionX);
+                possibleCell.push(possiblePositionY);
+                possibleCells.push(possibleCell);
+            }
+        } 
+    });
+    return possibleCells;
+}
+
+
+
+
 
 

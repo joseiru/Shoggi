@@ -1,29 +1,90 @@
+@font-face {
+  font-family: "njnaruto";
+  src: local("njnaruto"),
+       url("njnaruto.ttf") format("truetype");
+}
+
 body {
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  font-size: 18px;
+  font-family: "njnaruto", "Helvetica Neue", Arial, sans-serif;
+  font-size: 40px;
   margin: 0;
   padding: 0;
 }
 
 #game-board {
+  margin: 50px;
   background: #FFFFFF;
   border-width: 20px;
   border-style: solid;
   width: 810px;
+  float: left;
 }
 
 .black-turn {
   border-bottom-color: red;
-  border-top-color: #CD853F;
+  border-top-color: #A0522D;
   border-left-color: #CD853F;
   border-right-color: #CD853F;
 }
 
 .white-turn {
-  border-top-color: red;
-  border-bottom-color: #CD853F;
+  border-top-color: blue;
+  border-bottom-color: #A0522D;
   border-left-color: #CD853F;
   border-right-color: #CD853F;
+}
+
+#game-score {
+  float: left;
+  text-align: center;
+  margin: 40px;
+  padding: 10px;
+  width: 810px;
+  height: 820px;
+}
+
+.captured-white {
+  width: 400px;
+  height: 410px;
+  padding-top: 10px;
+  float: left;
+  border-bottom-style: solid;
+  border-right-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+.promotions-white {
+  width: 400px;
+  height: 410px;
+  padding-top: 10px;
+  float: left;
+  border-bottom-style: solid;
+  border-left-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+.captured-black {
+  width: 400px;
+  height: 410px;
+  padding-top: 10px;
+  float: left;
+  border-top-style: solid;
+  border-right-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+.promotions-black {
+  width: 400px;
+  height: 410px;
+  padding-top: 10px;
+  float: left;
+  border-top-style: solid;
+  border-left-style: solid;
+  border-width: 2px;
+  border-color: black;
 }
 
 .clearfix {
@@ -36,7 +97,7 @@ body {
 }
 
 .cell {
-  border-color: #000000;
+  border-color: #B0C4DE;
   box-sizing: border-box;
   border-style: solid;
   border-width: 5px;
@@ -60,7 +121,7 @@ body {
 
 #piece-container {
   position: absolute;
-  top: 20px;
+  top: 70px;
 }
 
 .red-border {
@@ -72,7 +133,7 @@ body {
   width: 80px;
 }
 .blue-border {
-  border-color: #87CEFA;
+  border-color: #00FF7F;
   box-sizing: border-box;
   border-style: solid;
   border-width: 5px;
@@ -404,3 +465,10 @@ body {
   transform: translate(725px, 725px);
 }
 
+#game-score {
+  float: left;
+}
+
+#japan-warrior {
+  transform: translate(405px, -500px);
+}

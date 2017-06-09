@@ -7,9 +7,7 @@ function Shogi () {
 
     this.playerWhite = new Player("W");
     this.playerBlack = new Player("B");
-
     this.playerTurn = "B";
-
     this.selectedPositionX = 0;
     this.selectedPositionY = 0;
     this.selectedPiece = null;
@@ -61,4 +59,19 @@ Shogi.prototype.switchTurn = function () {
 
 Shogi.prototype.getTurn = function () {
     return this.playerTurn;
+}
+
+
+Shogi.prototype.isGameOver = function (playerTurn) {
+
+    var gameOver = true;
+    for (var rowIndex=0; rowIndex < this.board.length; rowIndex++) {
+        for (var cellIndex=0; cellIndex < this.board[rowIndex].length; cellIndex++) {
+            var piece = this.board[rowIndex][cellIndex];
+            if ((piece instanceof King) && (piece.color === playerTurn)) {
+                gameOver = false;
+            }
+        }
+    }
+    return gameOver;
 }

@@ -97,7 +97,20 @@ function selectPossibleCells (possibleCells) {
 }
 
 function renderTurn () {
-  if (shogi.getTurn() === "B") {
+  if (shogi.isGameOver(shogi.getTurn())) {
+    var loserLongName = "";
+    if (shogi.getTurn() === "B") {
+      loserLongName = "BLUE";
+    } else {
+      loserLongName = "RED";
+    }
+    if (confirm(loserLongName + " WINS" + ". Play Again?")) {
+      shogi = new Shogi();
+      resetPieces();
+      renderPieces();
+      renderTurn();  
+    }
+  } else if (shogi.getTurn() === "B") {
     $("#game-board").removeClass("white-turn"); 
     $("#game-board").addClass("black-turn");
   } else {
@@ -105,6 +118,7 @@ function renderTurn () {
     $("#game-board").addClass("white-turn");
   }
 }
+
 
 
 
