@@ -21,14 +21,14 @@ body {
 }
 
 .black-turn {
-  border-bottom-color: #DC143C;
+  border-bottom-color: #FF6347;
   border-top-color: #A0522D;
   border-left-color: #CD853F;
   border-right-color: #CD853F;
 }
 
 .white-turn {
-  border-top-color: #000080;
+  border-top-color: #5F9EA0;
   border-bottom-color: #A0522D;
   border-left-color: #CD853F;
   border-right-color: #CD853F;
@@ -52,7 +52,7 @@ body {
   border-right-style: solid;
   border-width: 2px;
   border-color: black;
-  color: #000080;
+  color: #5F9EA0;
 }
 
 #promotions-white-container {
@@ -64,7 +64,7 @@ body {
   border-left-style: solid;
   border-width: 2px;
   border-color: black;
-  color: #000080;
+  color: #5F9EA0;
 }
 
 #captured-black-container {
@@ -76,7 +76,7 @@ body {
   border-right-style: solid;
   border-width: 2px;
   border-color: black;
-  color: #DC143C;
+  color: #FF6347;
 }
 
 #promotions-black-container {
@@ -88,7 +88,7 @@ body {
   border-left-style: solid;
   border-width: 2px;
   border-color: black;
-  color: #DC143C;
+  color: #FF6347;
 }
 
 #captured-white-pieces {
