@@ -27,6 +27,28 @@ function renderPieces () {
   }
 }
 
+function renderCapturedPieces() {
+   var capturedBlackContainer = document.getElementById("captured-black-pieces");
+   for (var i=0; i<shogi.capturedBlack.length; i++) {
+      var piece = shogi.capturedBlack[i];
+      var imgPiece = document.createElement("img");
+      imgPiece.setAttribute("src", piece.image);
+      imgPiece.setAttribute("height", "70");
+      imgPiece.setAttribute("width", "70");
+      capturedBlackContainer.appendChild(imgPiece);
+   }
+   var capturedWhiteContainer = document.getElementById("captured-white-pieces");
+   for (var i=0; i<shogi.capturedWhite.length; i++) {
+      var piece = shogi.capturedWhite[i];
+      var imgPiece = document.createElement("img");
+      imgPiece.setAttribute("src", piece.image);
+      imgPiece.setAttribute("height", "70");
+      imgPiece.setAttribute("width", "70");
+      capturedWhiteContainer.appendChild(imgPiece);
+   }
+}
+
+
 function resetPieces () {
   var pieceContainer = document.getElementById("piece-container");
   var pieces = pieceContainer.getElementsByClassName("piece");
@@ -34,6 +56,11 @@ function resetPieces () {
   Array.prototype.slice.call(pieces).forEach(function (piece) {
     pieceContainer.removeChild(piece);
   });
+}
+
+function resetCapturedPieces () {
+  $("#captured-black-pieces").empty();
+  $("#captured-white-pieces").empty();
 }
 
 function selectPieveToMoveAndMovement (event) {
@@ -86,6 +113,8 @@ function renderTurn () {
 function rePaintBoard() {
   resetPieces();
   renderPieces();
+  resetCapturedPieces();
+  renderCapturedPieces();
   renderTurn(); 
 }
 
@@ -108,6 +137,11 @@ function moveToCaptureOponent() {
   shogi.newPositionY = parseInt(newPositionClass.charAt(17));
   shogi.selectedPiece.positionX = shogi.newPositionX;
   shogi.selectedPiece.positionY = shogi.newPositionY;
+  if (shogi.getTurn() === "B") {
+    shogi.capturedWhite.push(shogi.board[shogi.newPositionX][shogi.newPositionY]);
+  } else {
+    shogi.capturedBlack.push(shogi.board[shogi.newPositionX][shogi.newPositionY]);
+  }
   shogi.board[shogi.newPositionX][shogi.newPositionY] = shogi.selectedPiece;
   shogi.board[shogi.selectedPositionX][shogi.selectedPositionY] = null;
   shogi.pieceSelected = false;
@@ -127,6 +161,8 @@ function showWinnerMessage() {
     rePaintBoard(); 
   }
 }
+
+
 
 
 

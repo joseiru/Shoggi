@@ -9,10 +9,8 @@ function Piece (color, positionX, positionY, alive, image, board) {
     this.possible = false;
 
     if (this.color === "W") {
-        //to do dar valor a la imagen
         this.image = "img/" + image + "-w.png";
     } else {
-        //to do dar valor a la imagen
         this.image = "img/" + image + "-b.png";
     }
 }
