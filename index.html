@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title></title>
+    <title>Shogi</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script type="text/javascript" src="lib/jquery-3.2.1.min.js"></script>
@@ -152,10 +152,16 @@
         </div>
     </div>
     <div id="game-score">
-        <div class="captured-white">Captured</div>
-        <div class="promotions-white">Promotions</div>
-        <div class="captured-black">Captured</div>
-        <div class="promotions-black">Promotions</div>
+        <div id="captured-white-container">Captured
+            <div class="clearfix"></div>
+            <div id="captured-white-pieces"></div>
+        </div>
+        <div id="promotions-white-container">Promotions</div>
+        <div id="captured-black-container">Captured
+            <div class="clearfix"></div>
+            <div id="captured-black-pieces"></div>
+        </div>
+        <div id="promotions-black-container">Promotions</div>
     </div>
     <img id="japan-warrior" src="img/japan-warrior.png"" alt="Warrior" height="100" width="100">
 </body>

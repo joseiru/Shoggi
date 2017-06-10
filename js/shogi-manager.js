@@ -13,6 +13,8 @@ function Shogi () {
     this.newPositionY = 0;
     this.pieceSelected = false;
     this.possibleCells = [];
+    this.capturedBlack = [];
+    this.capturedWhite = [];
 
     this.board.forEach(function(row, rowIndex){
         row.forEach(function (cell, cellIndex) {
