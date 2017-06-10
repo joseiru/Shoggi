@@ -12,47 +12,35 @@ Knight.prototype.getPossibleCells = function () {
     var that = this;
 
     if (this.color === "W") {
-        directionsWhite.forEach(function(direction) {
-            var possiblePositionX = that.positionX + direction[0];
-            var possiblePositionY = that.positionY + direction[1];
-            var cellIsInsideBoard = Piece.prototype.isInsideBoard(possiblePositionX,possiblePositionY);
-
-            if (cellIsInsideBoard) {
-                var cellToCheck = that.board[possiblePositionX][possiblePositionY];
-                var cellIsOponent = false;
-
-                if ((cellToCheck !== null) && (cellToCheck !== undefined)) {
-                    cellIsOponent = that.isOpponent(cellToCheck.color);
-                }
-                if ((cellToCheck === null) || (cellToCheck === undefined) || (cellIsOponent === true)) {
-                    var possibleCell = [];
-                    possibleCell.push(possiblePositionX);
-                    possibleCell.push(possiblePositionY);
-                    possibleCells.push(possibleCell);
-                }
-            } 
-        });
+        this._getPossibleCellsByColor(directionsWhite,possibleCells);
     } else {
-        directionsBlack.forEach(function(direction) {
-            var possiblePositionX = that.positionX + direction[0];
-            var possiblePositionY = that.positionY + direction[1];
-            var cellIsInsideBoard = Piece.prototype.isInsideBoard(possiblePositionX,possiblePositionY);
-            
-            if (cellIsInsideBoard) {
-                var cellToCheck = that.board[possiblePositionX][possiblePositionY];
-                var cellIsOponent = false;
-
-                if ((cellToCheck !== null) && (cellToCheck !== undefined)) {
-                    cellIsOponent = that.isOpponent(cellToCheck.color);
-                }
-                if ((cellToCheck === null) || (cellToCheck === undefined) || (cellIsOponent === true)) {
-                    var possibleCell = [];
-                    possibleCell.push(possiblePositionX);
-                    possibleCell.push(possiblePositionY);
-                    possibleCells.push(possibleCell);
-                }
-            }
-        });
+        this._getPossibleCellsByColor(directionsBlack,possibleCells);
     }
     return possibleCells;
+}
+
+Knight.prototype._getPossibleCellsByColor = function(directions, possibleCells) {
+
+    var that = this;
+
+    directions.forEach(function(direction) {
+        var possiblePositionX = that.positionX + direction[0];
+        var possiblePositionY = that.positionY + direction[1];
+        var cellIsInsideBoard = Piece.prototype.isInsideBoard(possiblePositionX,possiblePositionY);
+
+        if (cellIsInsideBoard) {
+            var cellToCheck = that.board[possiblePositionX][possiblePositionY];
+            var cellIsOponent = false;
+
+            if ((cellToCheck !== null) && (cellToCheck !== undefined)) {
+                cellIsOponent = that.isOpponent(cellToCheck.color);
+            }
+            if ((cellToCheck === null) || (cellToCheck === undefined) || (cellIsOponent === true)) {
+                var possibleCell = [];
+                possibleCell.push(possiblePositionX);
+                possibleCell.push(possiblePositionY);
+                possibleCells.push(possibleCell);
+            }
+        } 
+    });
 }

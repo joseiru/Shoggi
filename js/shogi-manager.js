@@ -5,8 +5,6 @@ function Shogi () {
         this.board[i] = new Array(9); 
     } 
 
-    this.playerWhite = new Player("W");
-    this.playerBlack = new Player("B");
     this.playerTurn = "B";
     this.selectedPositionX = 0;
     this.selectedPositionY = 0;

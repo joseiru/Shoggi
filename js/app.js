@@ -52,39 +52,14 @@ function selectPieveToMoveAndMovement (event) {
     }
   // unselect piece to move
   } else if ((event.target.nodeName === "IMG") && (shogi.pieceSelected == true) && ($(event.target).parent().hasClass("red-border"))) {
-    //pieceDiv.classList.remove("red-border");
     shogi.pieceSelected = false;
-    resetPieces();
-    renderPieces();
-    renderTurn();
+    rePaintBoard();
   // move piece to empty tile
   } else if ((shogi.pieceSelected == true) && ($(event.target).hasClass("blue-border"))) {
-    var newPositionClass = $(event.target).attr('class');
-    shogi.newPositionX = parseInt(newPositionClass.charAt(15));
-    shogi.newPositionY = parseInt(newPositionClass.charAt(17));
-    shogi.selectedPiece.positionX = shogi.newPositionX;
-    shogi.selectedPiece.positionY = shogi.newPositionY;
-    shogi.board[shogi.newPositionX][shogi.newPositionY] = shogi.selectedPiece;
-    shogi.board[shogi.selectedPositionX][shogi.selectedPositionY] = null;
-    shogi.pieceSelected = false;
-    resetPieces();
-    renderPieces();
-    shogi.switchTurn();
-    renderTurn();
-  // move piece to eat opponent piece
+    moveToEmptyTile();
+  // move piece to capture opponent piece
   } else if ((shogi.pieceSelected == true) && ($(event.target).parent().hasClass("blue-border"))) {
-    var newPositionClass = $(event.target).parent().attr('class');
-    shogi.newPositionX = parseInt(newPositionClass.charAt(15));
-    shogi.newPositionY = parseInt(newPositionClass.charAt(17));
-    shogi.selectedPiece.positionX = shogi.newPositionX;
-    shogi.selectedPiece.positionY = shogi.newPositionY;
-    shogi.board[shogi.newPositionX][shogi.newPositionY] = shogi.selectedPiece;
-    shogi.board[shogi.selectedPositionX][shogi.selectedPositionY] = null;
-    shogi.pieceSelected = false;
-    resetPieces();
-    renderPieces();
-    shogi.switchTurn();
-    renderTurn();
+    moveToCaptureOponent();
   }
 }
 
@@ -98,18 +73,7 @@ function selectPossibleCells (possibleCells) {
 
 function renderTurn () {
   if (shogi.isGameOver(shogi.getTurn())) {
-    var loserLongName = "";
-    if (shogi.getTurn() === "B") {
-      loserLongName = "BLUE";
-    } else {
-      loserLongName = "RED";
-    }
-    if (confirm(loserLongName + " WINS" + ". Play Again?")) {
-      shogi = new Shogi();
-      resetPieces();
-      renderPieces();
-      renderTurn();  
-    }
+    showWinnerMessage();
   } else if (shogi.getTurn() === "B") {
     $("#game-board").removeClass("white-turn"); 
     $("#game-board").addClass("black-turn");
@@ -119,6 +83,50 @@ function renderTurn () {
   }
 }
 
+function rePaintBoard() {
+  resetPieces();
+  renderPieces();
+  renderTurn(); 
+}
+
+function moveToEmptyTile() {
+  var newPositionClass = $(event.target).attr('class');
+  shogi.newPositionX = parseInt(newPositionClass.charAt(15));
+  shogi.newPositionY = parseInt(newPositionClass.charAt(17));
+  shogi.selectedPiece.positionX = shogi.newPositionX;
+  shogi.selectedPiece.positionY = shogi.newPositionY;
+  shogi.board[shogi.newPositionX][shogi.newPositionY] = shogi.selectedPiece;
+  shogi.board[shogi.selectedPositionX][shogi.selectedPositionY] = null;
+  shogi.pieceSelected = false;
+  shogi.switchTurn();
+  rePaintBoard(); 
+}
+
+function moveToCaptureOponent() {
+  var newPositionClass = $(event.target).parent().attr('class');
+  shogi.newPositionX = parseInt(newPositionClass.charAt(15));
+  shogi.newPositionY = parseInt(newPositionClass.charAt(17));
+  shogi.selectedPiece.positionX = shogi.newPositionX;
+  shogi.selectedPiece.positionY = shogi.newPositionY;
+  shogi.board[shogi.newPositionX][shogi.newPositionY] = shogi.selectedPiece;
+  shogi.board[shogi.selectedPositionX][shogi.selectedPositionY] = null;
+  shogi.pieceSelected = false;
+  shogi.switchTurn();
+  rePaintBoard(); 
+}
+
+function showWinnerMessage() {
+  var loserLongName = "";
+  if (shogi.getTurn() === "B") {
+    loserLongName = "BLUE";
+  } else {
+    loserLongName = "RED";
+  }
+  if (confirm(loserLongName + " WINS" + ". Play Again?")) {
+    shogi = new Shogi();
+    rePaintBoard(); 
+  }
+}
 
 
 
