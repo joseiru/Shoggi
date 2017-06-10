@@ -20,6 +20,10 @@ The game is played by turns and Red player starts the game.
 
 Select the piece you want to move and the game will offer the possible movements, then select the tile where you want to move. If you want to unselect the piece that you want to move click again on the selected piece.
 
+## Demo
+
+[Click here](https://joseiru.github.io/shogi/)
+
 ## Authors
 
 * **joseiru** - *Initial work* - [joseiru](https://github.com/joseiru)
